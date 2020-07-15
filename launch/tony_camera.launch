@@ -1,0 +1,15 @@
+<launch>
+    <arg name="camera"                    value="cam1"/>
+    <arg name="emitter_enable"            value="0.0"/>
+    <!-- <arg name="unite_imu_method"          value="linear_interpolation"/> -->
+    <arg name="unite_imu_method"          value="copy"/>
+    <arg name="enable_sync"               value="true"/>
+    <arg name="enable_pointcloud"         value="true"/>
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name="camera"                    value="$(arg camera)"/>
+        <arg name="emitter_enable"            value="$(arg emitter_enable)"/>
+        <arg name="unite_imu_method"          value="$(arg unite_imu_method)"/>
+        <arg name="enable_sync"               value="$(arg enable_sync)"/>
+        <arg name="enable_pointcloud"         value="$(arg enable_pointcloud)"/>
+    </include>
+</launch>
