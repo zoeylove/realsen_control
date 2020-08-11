@@ -92,6 +92,8 @@
   <arg name="allow_no_texture_points"  default="false"/>
   <arg name="auto_exposure_enable"     default="false"/>
   <arg name="exposure_time"            default="30"/>
+  <arg name="relocalization_enable"      default="false"/>
+  <arg name="pose_jumping_enable"      default="false"/>
 
 
 
@@ -186,6 +188,7 @@
     <param name="initial_reset"            type="bool"   value="$(arg initial_reset)"/>
     <param name="unite_imu_method"         type="str"    value="$(arg unite_imu_method)"/>
     <param name="allow_no_texture_points"  type="bool"   value="$(arg allow_no_texture_points)"/>
-
+    <param name="relocalization_enable"    type="bool"   value="$(arg relocalization_enable)"/>
+    <param name="pose_jumping_enable"      type="bool"   value="$(arg pose_jumping_enable)"/>
   </node>
 </launch>

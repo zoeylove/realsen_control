@@ -528,8 +528,8 @@ void BaseRealSenseNode::getParameters()
     _pnh.param("sync_mode",_sync_mode,std::string("master"));    //设置多个相机之间的同步方式，一个master(1)，多个slave(2)
     _pnh.param("align_depth", _align_depth, ALIGN_DEPTH);
     _pnh.param("enable_pointcloud", _pointcloud, POINTCLOUD);
-    _pnh.param("auto_exposure_enable", _auto_exposure_enable, false);
-    _pnh.param("exposure_time", _exposure_time,int(300)); //300 = 30ms
+    _pnh.param("auto_exposure_enable", _auto_exposure_enable, true);
+    _pnh.param("exposure_time", _exposure_time,int(1000)); //300 = 30ms
     //loop_closure control
     _pnh.param("pose_jumping_enable", _pose_jumping_enable,false);     
     _pnh.param("relocalization_enable", _relocalization_enable,false);    
@@ -720,24 +720,24 @@ void BaseRealSenseNode::setupDevice()
                     elem.set_option(RS2_OPTION_LASER_POWER,_emitter_enable);
             }
             //auto exposure control 
-            if(elem.supports(RS2_OPTION_ENABLE_AUTO_EXPOSURE))
-            {
-                if(_auto_exposure_enable == false)
-                {
-                    elem.set_option(RS2_OPTION_ENABLE_AUTO_EXPOSURE,0);
-                }
-                else if(_auto_exposure_enable == true)
-                    elem.set_option(RS2_OPTION_ENABLE_AUTO_EXPOSURE,1);
-                else
-                {
-                    ROS_ERROR_STREAM("auto_exposure_enable \"" << module_name << "\" isn't supported by LibRealSense! Terminating RealSense Node...");
-                    ros::shutdown();
-                    exit(1);
-                }
-            }
-            //set exposure time
-            if (elem.supports(RS2_OPTION_EXPOSURE))
-                elem.set_option(RS2_OPTION_EXPOSURE,_exposure_time);
+            // if(elem.supports(RS2_OPTION_ENABLE_AUTO_EXPOSURE))
+            // {
+            //     if(_auto_exposure_enable == false)
+            //     {
+            //         elem.set_option(RS2_OPTION_ENABLE_AUTO_EXPOSURE,0);
+            //     }
+            //     else if(_auto_exposure_enable == true)
+            //         elem.set_option(RS2_OPTION_ENABLE_AUTO_EXPOSURE,1);
+            //     else
+            //     {
+            //         ROS_ERROR_STREAM("auto_exposure_enable \"" << module_name << "\" isn't supported by LibRealSense! Terminating RealSense Node...");
+            //         ros::shutdown();
+            //         exit(1);
+            //     }
+            // }
+            // //set exposure time
+            // if (elem.supports(RS2_OPTION_EXPOSURE))
+            //     elem.set_option(RS2_OPTION_EXPOSURE,_exposure_time);
             
             // if (elem.supports(RS2_OPTION_FRAMES_QUEUE_SIZE))
             //     elem.set_option(RS2_OPTION_FRAMES_QUEUE_SIZE,2);
@@ -779,7 +779,7 @@ void BaseRealSenseNode::setupDevice()
             {
                 _sensors[COLOR] = elem;
                 _sensors_callback[module_name] = frame_callback_function;
-                elem.set_option(RS2_OPTION_AUTO_EXPOSURE_PRIORITY,0);   //for sync ,it should close
+                elem.set_option(RS2_OPTION_AUTO_EXPOSURE_PRIORITY,1);   //for sync ,it should close
             }
             else if ("Wide FOV Camera" == module_name)
             {

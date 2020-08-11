@@ -11,7 +11,7 @@
 
   <arg name="fisheye_width"       default="640"/>
   <arg name="fisheye_height"      default="480"/>
-  <arg name="enable_fisheye"      default="true"/>
+  <arg name="enable_fisheye"      default="false"/>
 
   <arg name="depth_width"         default="640"/>
   <arg name="depth_height"        default="480"/>
@@ -19,8 +19,8 @@
 
   <arg name="infra_width"        default="640"/>
   <arg name="infra_height"       default="480"/>
-  <arg name="enable_infra1"       default="true"/>
-  <arg name="enable_infra2"       default="true"/>
+  <arg name="enable_infra1"       default="false"/>
+  <arg name="enable_infra2"       default="false"/>
 
   <arg name="color_width"         default="640"/>
   <arg name="color_height"        default="480"/>
@@ -40,8 +40,8 @@
   <arg name="pointcloud_texture_stream" default="RS2_STREAM_COLOR"/>
   <arg name="pointcloud_texture_index"  default="0"/>
     
-  <arg name="enable_sync"               default="false"/>
-  <arg name="align_depth"               default="false"/>
+  <arg name="enable_sync"               default="true"/>
+  <arg name="align_depth"               default="true"/>
 
   <arg name="publish_tf"                default="true"/>
   <arg name="tf_publish_rate"           default="0"/>

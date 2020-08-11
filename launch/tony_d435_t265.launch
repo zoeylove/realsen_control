@@ -16,6 +16,7 @@ https://github.com/IntelRealSense/librealsense/blob/master/third-party/libtm/lib
     
     <arg name="pose_jumping_enable"             value="false"/>
     <arg name="relocalization_enable"           value="false"/>
+    <arg name="emitter_enable"                  value="1.0"/>
 
     <group ns="$(arg camera2)">
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_camera)/rviz/t265.rviz" required="true" />
@@ -34,14 +35,22 @@ https://github.com/IntelRealSense/librealsense/blob/master/third-party/libtm/lib
     <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
         <arg name="serial_no"             value="$(arg serial_no_camera1)"/>
         <arg name="tf_prefix"         		value="$(arg tf_prefix_camera1)"/>
-        <arg name="initial_reset"         value="$(arg initial_reset)"/>
         <arg name="sync_mode"               value="master"/>        
-        <arg name="unite_imu_method"          value="$(arg unite_imu_method)"/>
         <arg name="enable_sync"               value="$(arg enable_sync)"/>
         <arg name="emitter_enable"               value="$(arg emitter_enable)"/>
-        <arg name="enable_pointcloud"         value="$(arg enable_pointcloud)"/>
-        <arg name="auto_exposure_enable"      value="$(arg auto_exposure_enable)"/>
-        <arg name="exposure_time"             value="$(arg exposure_time)"/>
+        <arg name="align_depth"               value="true"/>
+        <arg name="enable_infra1"           value="false"/>
+        <arg name="enable_infra2"           value="false"/>
+        <arg name="depth_fps"           value="30"/>
+        <arg name="enable_fisheye"      value="false"/>
+        <arg name="depth_width"         value="640"/>
+        <arg name="depth_height"        value="480"/>
+        <arg name="enable_depth"        value="true"/>
+
+        <arg name="color_width"         value="640"/>
+        <arg name="color_height"        value="480"/>
+        <arg name="enable_color"        value="true"/>
+        <arg name="color_fps"           value="30"/>
     </include>
     </group> -->
 </launch>
